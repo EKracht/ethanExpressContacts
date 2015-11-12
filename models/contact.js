@@ -16,9 +16,7 @@ Contact.create = function(contact, cb){
   Contact.findAll(function(err, contacts){
     contacts.push(contact);
     var data = JSON.stringify(contacts);
-    fs.writeFile(db, data, function(err){
-      cb(err || null);
-    });
+    fs.writeFile(db, data, cb);
   });
 };
 
@@ -34,13 +32,9 @@ Contact.remove = function(index, cb){
 Contact.update = function(person, cb){
   Contact.findAll(function(err, contacts){
     if (err) return cb(err);
-    console.log('person', person);
-    console.log('index', person.index);
     contacts.splice(person.index, 1, person);
     var data = JSON.stringify(contacts);
-    fs.writeFile(db, data, function(err){
-      cb(err || null);
-    });
+    fs.writeFile(db, data, cb);
   });
 };
 

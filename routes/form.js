@@ -7,8 +7,11 @@ var Contact = require('../models/contact');
 
 router.get('/', function(req, res){
   Contact.findAll(function(err, contacts){ 
-    if (err) return res.status(400).send(err);
-    res.render('create', {title: 'Contact List', items: contacts});
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.render('form', {title: 'Contact List', items: contacts});
+    }
   });
 });
 

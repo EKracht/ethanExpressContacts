@@ -12,10 +12,6 @@ function init(){
 }
 
 function saveEdit(){
-  // var $target = $(e.target);
-  // var $tr = $target.closest('tr');
-  // var index = $tr.index();
-
   var person = {};
   person.name = $('#editName').val();
   person.email = $('#editEmail').val();
@@ -26,18 +22,16 @@ function saveEdit(){
   $('input').each(function(index, input){
     $(input).val('');
   });
+
   $.ajax({
-    url: '/create/update',
+    url: '/form/update',
     type: 'POST',
     data: person
   })
   .done(function(data){
     $('#contactList').children("tr:nth-child(" + parseInt(index.value + 1) + ")").replaceWith(contactRow(data));
-    console.log('hi');
-    console.log('data', data);
   })
   .fail(function(err){
-    console.log(err);
   })
 }
 
@@ -51,10 +45,9 @@ function deleteContact(e){
   var $target = $(e.target);
   var $tr = $target.closest('tr');
   var index = $tr.index();
-  console.log('index', index);
 
   $.ajax({
-    url: "/create/delete",
+    url: "/form/delete",
     type: "DELETE",
     data: {index: index}
   })
@@ -62,7 +55,6 @@ function deleteContact(e){
     $tr.remove();
   })
   .fail(function(err){
-    console.log(err);
   })
 }
 
@@ -77,15 +69,12 @@ function addContact(){
     $(input).val('');
   });
 
-  console.log(contact);
-
-  $.post('/create', contact)
+  $.post('/form', contact)
   .done(function(data){
     var $contactRow = contactRow(contact);
     $('#contactList').append($contactRow);
   })
   .fail(function(err){
-    console.log(err);
   })
 }
 
@@ -97,7 +86,7 @@ function contactRow(person){
   var $food = $('<td>').addClass('food').text(person.food);
 
   var $editTd = $('<td>').addClass('edit text-center');
-  var $editIcon = $('<i>').addClass('fa fa-pencil-square-o fa-lg')
+  var $editIcon = $('<i>').addClass('fa fa-pencil-square-o fa-lg').attr('data-target','#myModal').attr('data-toggle','modal')
   $editTd.append($editIcon)
 
   var $deleteTd = $('<td>').addClass('delete text-center');
@@ -107,20 +96,3 @@ function contactRow(person){
   $tr.append($name, $email, $phone, $food, $editTd, $deleteTd);
   return $tr;
 }
-
-function save(){
-  // var object = {};
-  // object.name = $('#name').val();
-  // object.email = $('#email').val();
-  // object.phone = $('#phone').val();
-  // console.log('object', object);
-  // $.post('/create', object)
-  // .done(function(data){
-  //   console.log('success!')
-  // })
-  // .fail(function(err){
-  //   console.log(err)
-  // })
-}
-
-

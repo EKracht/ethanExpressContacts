@@ -9,7 +9,7 @@ block content
       each prop in properties
         label #{prop.toUpperCase()}:
         input(id= prop)
-      button.btn#submit Add
+      button.btn.btn-success#submit Add
     .row
       table.table.table-hover
         thead
@@ -38,7 +38,6 @@ block content
               input#editPhone(type='number', placeholder='Phone')
               br
               input#editFood(type='text', placeholder='Food')
-              br
               br
               p.msg(align='center')
               br
