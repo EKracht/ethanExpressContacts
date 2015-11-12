@@ -1,0 +1,16 @@
+
+.edit:hover, .delete:hover {
+  cursor: pointer;
+}
+
+.edit:hover {
+  color: green;
+}
+
+.delete:hover {
+  color: red;
+}
+
+#myModal {
+  text-align: center;
+}

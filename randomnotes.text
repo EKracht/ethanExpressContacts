@@ -1,0 +1,7 @@
+        button#save.btn.btn-success Save
+        a#cancel.btn.btn-success(href='/') Cancel
+
+
+         #myModal.modal.fade.bs-example-modal-lg(tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel')
+        .modal-dialog.modal-lg
+          .modal-content
