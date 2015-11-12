@@ -32,8 +32,7 @@ function saveEdit(){
     data: person
   })
   .done(function(data){
-    $('#contactList').children("tr:nth-child(" + parseInt(index.value + 1) + ")").remove();
-    // $('#contactList').children("tr:nth-child(" + parseInt(index.value + 1) + ")").append()
+    $('#contactList').children("tr:nth-child(" + parseInt(index.value + 1) + ")").replaceWith(contactRow(data));
     console.log('hi');
     console.log('data', data);
   })
@@ -90,12 +89,12 @@ function addContact(){
   })
 }
 
-function contactRow(contact){
+function contactRow(person){
   var $tr = $('<tr>');
-  var $name = $('<td>').addClass('name').text(contact.name);
-  var $email = $('<td>').addClass('email').text(contact.email);
-  var $phone = $('<td>').addClass('phone').text(contact.phone);
-  var $food = $('<td>').addClass('food').text(contact.food);
+  var $name = $('<td>').addClass('name').text(person.name);
+  var $email = $('<td>').addClass('email').text(person.email);
+  var $phone = $('<td>').addClass('phone').text(person.phone);
+  var $food = $('<td>').addClass('food').text(person.food);
 
   var $editTd = $('<td>').addClass('edit text-center');
   var $editIcon = $('<i>').addClass('fa fa-pencil-square-o fa-lg')
