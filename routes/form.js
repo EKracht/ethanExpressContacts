@@ -33,7 +33,7 @@ router.delete('/delete', function(req, res){
     if (err) {
       res.status(400).send(err);
     } else {
-      res.send('contact created!');
+      res.send('contact deleted!');
     }
   });
 });
